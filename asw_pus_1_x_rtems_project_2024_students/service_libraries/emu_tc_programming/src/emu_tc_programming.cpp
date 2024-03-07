@@ -15,8 +15,7 @@
 #define FT_SOLO_EPD_ICU_SERV_9_0020
 
 
-//TODO
-//#define FT_SOLO_EPD_ICU_SERV_1_REJECTED_TC_0030
+#define FT_SOLO_EPD_ICU_SERV_1_REJECTED_TC_0030
 
 
 
@@ -39,7 +38,7 @@ EmuGSS_TCProgram9_129 prog_FT_0020_step_0(UNITIME_AFTER_POWER_ON + 10 ,
 
 
 #endif
-/*
+
 #ifdef FT_SOLO_EPD_ICU_SERV_1_REJECTED_TC_0030
 
 
@@ -49,5 +48,5 @@ EmuGSS_TCProgram17_3 prog_FT_0030_step_0(FT_SOLO_EPD_ICU_SERV_1_0030_TIME,
 		"FT_SOLO_EPD_ICU_SERV_1_0030 step 0, Rejected TC",0xFF);
 
 #endif
-*/
+
 
