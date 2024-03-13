@@ -38,6 +38,7 @@ public:
 	 */
 	 enum TEDROOMCCEPDManagerSignal { EDROOMSignalTimeout, 
 							EDROOMSignalDestroy, 
+							SHK_FDIR_TC, 
 							EDROOMIRQsignal, 
 							STxTM, 
 							STMQueued };
@@ -64,6 +65,10 @@ public:
 			CDTMList	poolCDTMList[10+1];
 			//! CDTMList Data Pool Marks Memory
 			bool	poolMarkCDTMList[10];
+			//! CDTCHandler Data Pool Memory
+			CDTCHandler	poolCDTCHandler[10+1];
+			//! CDTCHandler Data Pool Marks Memory
+			bool	poolMarkCDTCHandler[10];
 
 
 			/** \brief This function is used for setting the Component Memory
@@ -89,6 +94,8 @@ public:
 	//******************  Component Communication Ports *******************
 	// ********************************************************************
 
+	//! HK_FDIRCtrl Component Port
+	CEDROOMInterface	HK_FDIRCtrl;
 	//! TMChannelCtrl Component Port
 	CEDROOMInterface	TMChannelCtrl;
 
@@ -204,6 +211,7 @@ public:
 	 */
 	enum TEDROOMCCEPDManagerSignal { EDROOMSignalTimeout,
 		EDROOMSignalDestroy,
+		SHK_FDIR_TC,
 		EDROOMIRQsignal,
 		STxTM,
 		STMQueued };
@@ -221,6 +229,7 @@ public:
 		CEDROOMMessage * &MsgBack;
 
 		//!Component ports
+		CEDROOMInterface & HK_FDIRCtrl;
 		CEDROOMInterface & TMChannelCtrl;
 		CEDROOMIRQInterface & RxTC;
 
@@ -238,6 +247,7 @@ public:
 			NewRxTC_NotAccepted,
 			HandleTC,
 			HandleTC_ToReboot,
+			HandleTC_FwdHK_FDIRTC,
 			HandleTC_ExecPrioTC,
 			EDROOMMemoryTrans };
 
@@ -257,6 +267,12 @@ public:
 			CDTMList	* AllocData();
 		};
 		CEDROOMPOOLCDTMList	& EDROOMPoolCDTMList;
+		class CEDROOMPOOLCDTCHandler:public CEDROOMProtectedMemoryPool {
+			public:
+			CEDROOMPOOLCDTCHandler(TEDROOMUInt32 elemCount,CDTCHandler *pMem, bool *pMarks);
+			CDTCHandler	* AllocData();
+		};
+		CEDROOMPOOLCDTCHandler	& EDROOMPoolCDTCHandler;
 
 
 		//!Constructor
@@ -264,7 +280,8 @@ public:
 				CDEventList & EDROOMpVarVCurrentEvList,
 				CDTCHandler & EDROOMpVarVCurrentTC,
 				CDTMList & EDROOMpVarVCurrentTMList,
-				CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList );
+				CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList,
+				CEDROOMPOOLCDTCHandler & EDROOMpPoolCDTCHandler );
 
 		//!Copy constructor
 		EDROOM_CTX_Top_0 (EDROOM_CTX_Top_0 &context);
@@ -334,6 +351,16 @@ public:
 		 */
 		bool	GToReboot();
 
+		/**
+		 * \brief 
+		 */
+		bool	GFwdToHK_FDIR();
+
+		/**
+		 * \brief 
+		 */
+		void	FFwdHK_FDIRTC();
+
 	};
 
 	// ***********************************************************************
@@ -364,6 +391,7 @@ public:
 
 		// Pools**************************************************
 		CEDROOMPOOLCDTMList	EDROOMPoolCDTMList;
+		CEDROOMPOOLCDTCHandler	EDROOMPoolCDTCHandler;
 
 
 	public:

@@ -43,10 +43,8 @@ void PUS_HK_FDIR_TCExecutor::ExecTC(CDTCHandler &tc_handler, CDTMList &tm_list,
 		tc_handler.StartUpExecution();
 
 		switch (tc_handler.GetType()) {
-				   //Exec Service 3 Telecommands
-					case (3):
-						PUSService3::ExecTC(tc_handler,tm_list);
-						break;
+				   //TODO Exec Service 3 Telecommands
+
 					default: //This must be an event
 						break;
 		}
