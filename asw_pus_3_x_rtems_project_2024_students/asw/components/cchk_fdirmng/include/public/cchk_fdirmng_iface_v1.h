@@ -11,7 +11,6 @@
 //******************************************************************************
 // Data Classes
 
-#include <public/cdtchandler_iface_v1.h>
 #include <public/cdtmlist_iface_v1.h>
 
 
@@ -36,7 +35,6 @@ public:
 	 */
 	 enum TEDROOMCCHK_FDIRMngSignal { EDROOMSignalTimeout, 
 							EDROOMSignalDestroy, 
-							SHK_FDIR_TC, 
 							STxTM, 
 							STMQueued };
 
@@ -101,8 +99,6 @@ public:
 	//******************  Component Communication Ports *******************
 	// ********************************************************************
 
-	//! HK_FDIRCtrl Component Port
-	CEDROOMInterface	HK_FDIRCtrl;
 	//! TMChannelCtrl Component Port
 	CEDROOMInterface	TMChannelCtrl;
 
@@ -185,7 +181,6 @@ public:
 	 */
 	enum TEDROOMCCHK_FDIRMngSignal { EDROOMSignalTimeout,
 		EDROOMSignalDestroy,
-		SHK_FDIR_TC,
 		STxTM,
 		STMQueued };
 
@@ -202,7 +197,6 @@ public:
 		CEDROOMMessage * &MsgBack;
 
 		//!Component ports
-		CEDROOMInterface & HK_FDIRCtrl;
 		CEDROOMInterface & TMChannelCtrl;
 		CEDROOMTimingInterface & HK_FDIRTimer;
 
@@ -214,7 +208,6 @@ public:
 		//!Transition Identifiers
 		enum TEDROOMTransitionID{Init,
 			DoHK_FDIR,
-			ExecTC,
 			EDROOMMemoryTrans };
 
 
@@ -271,7 +264,7 @@ public:
 		/**
 		 * \brief  
 		 */
-		void	FDoHK_FDIR();
+		void	FDo_HK_FDIR();
 
 		/**
 		 * \brief  
@@ -282,11 +275,6 @@ public:
 		 * \brief  
 		 */
 		void	FInvokeTxTMList();
-
-		/**
-		 * \brief 
-		 */
-		void	FExecHK_FDIR_TC();
 
 	};
 

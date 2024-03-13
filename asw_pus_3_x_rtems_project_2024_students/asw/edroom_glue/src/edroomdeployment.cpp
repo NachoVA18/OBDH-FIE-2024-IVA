@@ -64,13 +64,13 @@ void CEDROOMSystemCommSAP::SetComponents(ICUASW   *p_comp1,
 //*****************************************************************************
  
  
-TEDROOMSignal CEDROOMSystemCommSAP::C3TM_ChannelCtrl_PTMChannelCtrl2__C4HK_FDIRMng_PTMChannelCtrl(TEDROOMSignal signalOut){
+TEDROOMSignal CEDROOMSystemCommSAP::C4HK_FDIRMng_PTMChannelCtrl__C3TM_ChannelCtrl_PTMChannelCtrl2(TEDROOMSignal signalOut){
  
 	TEDROOMSignal signalIn;
  
 	switch(signalOut){
  
-		case( CCTM_ChannelCtrl::STMQueued):	 signalIn=CCHK_FDIRMng::STMQueued; break;
+		case( CCHK_FDIRMng::STxTM):	 signalIn=CCTM_ChannelCtrl::STxTM; break;
  
 		default: signalIn=(TEDROOMSignal)(-1); break;
  
@@ -79,13 +79,13 @@ TEDROOMSignal CEDROOMSystemCommSAP::C3TM_ChannelCtrl_PTMChannelCtrl2__C4HK_FDIRM
  
 }
  
-TEDROOMSignal CEDROOMSystemCommSAP::C4HK_FDIRMng_PTMChannelCtrl__C3TM_ChannelCtrl_PTMChannelCtrl2(TEDROOMSignal signalOut){
+TEDROOMSignal CEDROOMSystemCommSAP::C3TM_ChannelCtrl_PTMChannelCtrl2__C4HK_FDIRMng_PTMChannelCtrl(TEDROOMSignal signalOut){
  
 	TEDROOMSignal signalIn;
  
 	switch(signalOut){
  
-		case( CCHK_FDIRMng::STxTM):	 signalIn=CCTM_ChannelCtrl::STxTM; break;
+		case( CCTM_ChannelCtrl::STMQueued):	 signalIn=CCHK_FDIRMng::STMQueued; break;
  
 		default: signalIn=(TEDROOMSignal)(-1); break;
  
@@ -124,34 +124,6 @@ TEDROOMSignal CEDROOMSystemCommSAP::C3TM_ChannelCtrl_PTMChannelCtrl__C2EPDManage
  
 }
  
-TEDROOMSignal CEDROOMSystemCommSAP::C2EPDManager_PHK_FDIRCtrl__C4HK_FDIRMng_PHK_FDIRCtrl(TEDROOMSignal signalOut){
- 
-	TEDROOMSignal signalIn;
- 
-	switch(signalOut){
- 
-		case( CCEPDManager::SHK_FDIR_TC):	 signalIn=CCHK_FDIRMng::SHK_FDIR_TC; break;
- 
-		default: signalIn=(TEDROOMSignal)(-1); break;
- 
-	}
-	return signalIn;
- 
-}
- 
-TEDROOMSignal CEDROOMSystemCommSAP::C4HK_FDIRMng_PHK_FDIRCtrl__C2EPDManager_PHK_FDIRCtrl(TEDROOMSignal signalOut){
- 
-	TEDROOMSignal signalIn;
- 
-	switch(signalOut){
- 
-		default: signalIn=(TEDROOMSignal)(-1); break;
- 
-	}
-	return signalIn;
- 
-}
- 
  
  
 //*****************************************************************************
@@ -163,18 +135,16 @@ void CEDROOMSystemCommSAP::RegisterInterfaces(){
 	m_localCommSAP.RegisterInterface(1, mp_comp1->Timer, mp_comp1);
  
 	// Register Interface for Component 2
-	m_localCommSAP.RegisterInterface(1, mp_comp2->HK_FDIRCtrl, mp_comp2);
-	m_localCommSAP.RegisterInterface(2, mp_comp2->RxTC, mp_comp2);
-	m_localCommSAP.RegisterInterface(3, mp_comp2->TMChannelCtrl, mp_comp2);
+	m_localCommSAP.RegisterInterface(1, mp_comp2->RxTC, mp_comp2);
+	m_localCommSAP.RegisterInterface(2, mp_comp2->TMChannelCtrl, mp_comp2);
  
 	// Register Interface for Component 3
 	m_localCommSAP.RegisterInterface(1, mp_comp3->TMChannelCtrl2, mp_comp3);
 	m_localCommSAP.RegisterInterface(2, mp_comp3->TMChannelCtrl, mp_comp3);
  
 	// Register Interface for Component 4
-	m_localCommSAP.RegisterInterface(1, mp_comp4->HK_FDIRCtrl, mp_comp4);
-	m_localCommSAP.RegisterInterface(2, mp_comp4->TMChannelCtrl, mp_comp4);
-	m_localCommSAP.RegisterInterface(3, mp_comp4->HK_FDIRTimer, mp_comp4);
+	m_localCommSAP.RegisterInterface(1, mp_comp4->TMChannelCtrl, mp_comp4);
+	m_localCommSAP.RegisterInterface(2, mp_comp4->HK_FDIRTimer, mp_comp4);
  
 }
  
@@ -184,17 +154,13 @@ void CEDROOMSystemCommSAP::RegisterInterfaces(){
  
 void CEDROOMSystemCommSAP::SetLocalConnections(){
  
-	m_localCommSAP.Connect(mp_comp3->TMChannelCtrl2, mp_comp4->TMChannelCtrl, connections[0], 
-					C3TM_ChannelCtrl_PTMChannelCtrl2__C4HK_FDIRMng_PTMChannelCtrl, 
-					C4HK_FDIRMng_PTMChannelCtrl__C3TM_ChannelCtrl_PTMChannelCtrl2);
+	m_localCommSAP.Connect(mp_comp4->TMChannelCtrl, mp_comp3->TMChannelCtrl2, connections[0], 
+					C4HK_FDIRMng_PTMChannelCtrl__C3TM_ChannelCtrl_PTMChannelCtrl2, 
+					C3TM_ChannelCtrl_PTMChannelCtrl2__C4HK_FDIRMng_PTMChannelCtrl);
  
 	m_localCommSAP.Connect(mp_comp2->TMChannelCtrl, mp_comp3->TMChannelCtrl, connections[1], 
 					C2EPDManager_PTMChannelCtrl__C3TM_ChannelCtrl_PTMChannelCtrl, 
 					C3TM_ChannelCtrl_PTMChannelCtrl__C2EPDManager_PTMChannelCtrl);
- 
-	m_localCommSAP.Connect(mp_comp2->HK_FDIRCtrl, mp_comp4->HK_FDIRCtrl, connections[2], 
-					C2EPDManager_PHK_FDIRCtrl__C4HK_FDIRMng_PHK_FDIRCtrl, 
-					C4HK_FDIRMng_PHK_FDIRCtrl__C2EPDManager_PHK_FDIRCtrl);
  
 }
  
