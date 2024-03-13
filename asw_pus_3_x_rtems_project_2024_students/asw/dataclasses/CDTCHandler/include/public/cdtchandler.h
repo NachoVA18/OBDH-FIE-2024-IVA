@@ -23,9 +23,13 @@ enum TTCAcceptationStatus {
 class CDTCHandler {
 
 	friend class PUSService1;
-	friend class PUSService9;
 	friend class PUSService3;
+	friend class PUSService9;
 	friend class PUSService17;
+
+	//Friendship Added
+	friend class PUSService3;
+
 
 	friend class PUSPrioTCExecutor;
 	friend class PUS_HK_FDIR_TCExecutor;
@@ -97,11 +101,11 @@ protected:
 	}
 
 	/**
-	 * \brief Set mTCExecCtrl to ExecCtrlHK_FDIRTC
+	 * \brief Set mTCExecCtrl to ExecCtrHK_FDIRTC
 	 *
 	 */
 
-	void SetExecCtrlAsHK_FDIRTC() {
+	void SetExecCtrlAsHK_FDIRTC(){
 
 		mTCExecCtrl = ExecCtrlHK_FDIRTC;
 	}
@@ -161,9 +165,9 @@ public:
 	}
 
 	bool_t IsHK_FDIRTC() {
-			return ExecCtrlHK_FDIRTC == mTCExecCtrl;
-	}
 
+		return ExecCtrlHK_FDIRTC == mTCExecCtrl;
+	}
 	/**
 	 * \brief Get APID
 	 *

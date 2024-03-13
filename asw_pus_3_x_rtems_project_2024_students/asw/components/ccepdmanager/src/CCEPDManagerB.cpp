@@ -14,20 +14,17 @@ CCEPDManager::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(CCEPDManager &act,
 	 CDEventList & EDROOMpVarVCurrentEvList,
 	 CDTCHandler & EDROOMpVarVCurrentTC,
 	 CDTMList & EDROOMpVarVCurrentTMList,
-	 CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList,
-	 CEDROOMPOOLCDTCHandler & EDROOMpPoolCDTCHandler ):
+	 CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList ):
 
 	EDROOMcomponent(act),
 	Msg(EDROOMcomponent.Msg),
 	MsgBack(EDROOMcomponent.MsgBack),
-	HK_FDIRCtrl(EDROOMcomponent.HK_FDIRCtrl),
 	TMChannelCtrl(EDROOMcomponent.TMChannelCtrl),
 	RxTC(EDROOMcomponent.RxTC),
 	VCurrentEvList(EDROOMpVarVCurrentEvList),
 	VCurrentTC(EDROOMpVarVCurrentTC),
 	VCurrentTMList(EDROOMpVarVCurrentTMList),
-	EDROOMPoolCDTMList(EDROOMpPoolCDTMList),
-	EDROOMPoolCDTCHandler(EDROOMpPoolCDTCHandler)
+	EDROOMPoolCDTMList(EDROOMpPoolCDTMList)
 {
 }
 
@@ -36,14 +33,12 @@ CCEPDManager::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(EDROOM_CTX_Top_0 &context):
 	EDROOMcomponent(context.EDROOMcomponent),
 	Msg(context.Msg),
 	MsgBack(context.MsgBack),
-	HK_FDIRCtrl(context.HK_FDIRCtrl),
 	TMChannelCtrl(context.TMChannelCtrl),
 	RxTC(context.RxTC),
 	VCurrentEvList(context.VCurrentEvList),
 	VCurrentTC(context.VCurrentTC),
 	VCurrentTMList(context.VCurrentTMList),
-	EDROOMPoolCDTMList(context.EDROOMPoolCDTMList ),
-	EDROOMPoolCDTCHandler(context.EDROOMPoolCDTCHandler )
+	EDROOMPoolCDTMList(context.EDROOMPoolCDTMList )
 {
 
 }
@@ -175,31 +170,6 @@ return VCurrentTC.IsRebootTC();
 
 
 
-bool	CCEPDManager::EDROOM_CTX_Top_0::GFwdToHK_FDIR()
-
-{
-
-return VCurrentTC.IsHK_FDIRTC();
-
-}
-
-
-
-void	CCEPDManager::EDROOM_CTX_Top_0::FFwdHK_FDIRTC()
-
-{
-   //Allocate data from pool
-  CDTCHandler * pSHK_FDIR_TC_Data = EDROOMPoolCDTCHandler.AllocData();
-	
-		// Complete Data 
-	
-*pSHK_FDIR_TC_Data=VCurrentTC;   
-   //Send message 
-   HK_FDIRCtrl.send(SHK_FDIR_TC,pSHK_FDIR_TC_Data,&EDROOMPoolCDTCHandler); 
-}
-
-
-
 	//********************************** Pools *************************************
 
 	//CEDROOMPOOLCDTMList
@@ -214,20 +184,6 @@ CCEPDManager::EDROOM_CTX_Top_0::CEDROOMPOOLCDTMList::CEDROOMPOOLCDTMList(
 CDTMList *	CCEPDManager::EDROOM_CTX_Top_0::CEDROOMPOOLCDTMList::AllocData()
 {
 	return(CDTMList*)CEDROOMProtectedMemoryPool::AllocData();
-}
-
-	//CEDROOMPOOLCDTCHandler
-
-CCEPDManager::EDROOM_CTX_Top_0::CEDROOMPOOLCDTCHandler::CEDROOMPOOLCDTCHandler(
-			TEDROOMUInt32 elemCount,CDTCHandler* pMem,bool * pMemMarks):
-				CEDROOMProtectedMemoryPool(elemCount, pMem, pMemMarks,
-					sizeof(CDTCHandler))
-{
-}
-
-CDTCHandler *	CCEPDManager::EDROOM_CTX_Top_0::CEDROOMPOOLCDTCHandler::AllocData()
-{
-	return(CDTCHandler*)CEDROOMProtectedMemoryPool::AllocData();
 }
 
 
@@ -248,14 +204,10 @@ CCEPDManager::EDROOM_SUB_Top_0::EDROOM_SUB_Top_0 (CCEPDManager&act
 			VCurrentEvList,
 			VCurrentTC,
 			VCurrentTMList,
-			EDROOMPoolCDTMList,
-			EDROOMPoolCDTCHandler),
+			EDROOMPoolCDTMList),
 		EDROOMPoolCDTMList(
 			10, pEDROOMMemory->poolCDTMList,
-			pEDROOMMemory->poolMarkCDTMList),
-		EDROOMPoolCDTCHandler(
-			10, pEDROOMMemory->poolCDTCHandler,
-			pEDROOMMemory->poolMarkCDTCHandler)
+			pEDROOMMemory->poolMarkCDTMList)
 {
 
 }
@@ -339,19 +291,6 @@ void CCEPDManager::EDROOM_SUB_Top_0::EDROOMBehaviour()
 
 					//Next State is Reboot
 					edroomNextState = Reboot;
-				 } 
-				//Evaluate Branch FwdHK_FDIRTC
-				else if( GFwdToHK_FDIR() )
-				{
-					//Send Asynchronous Message 
-					FFwdHK_FDIRTC();
-
-					//Branch taken is HandleTC_FwdHK_FDIRTC
-					edroomCurrentTrans.localId =
-						HandleTC_FwdHK_FDIRTC;
-
-					//Next State is Ready
-					edroomNextState = Ready;
 				 } 
 				//Default Branch ExecPrioTC
 				else
