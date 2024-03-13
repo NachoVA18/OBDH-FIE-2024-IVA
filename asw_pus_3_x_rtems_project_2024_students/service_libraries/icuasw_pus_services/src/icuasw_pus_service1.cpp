@@ -106,7 +106,14 @@ void PUSService1::TryTCAcceptation(CDTCHandler &tcHandler) {
 				//TC Classified as HK_FDIRTC
 				tcHandler.SetExecCtrlAsHK_FDIRTC();
 				break;
-			//TODO Accept TC[3,6] and TC[3,31]
+
+			case (6):
+				tcHandler.SetExecCtrlAsHK_FDIRTC();
+				break;
+
+			case (31):
+				tcHandler.SetExecCtrlAsHK_FDIRTC();
+				break;
 
 			default:
 				acceptationStatus = TCAcceptationSubTypeError;
