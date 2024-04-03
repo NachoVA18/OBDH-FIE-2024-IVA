@@ -95,13 +95,13 @@ class CEDROOMSystemCommSAP{
  
 //Signal Conversion
  
-	static TEDROOMSignal C5BKGTCExec_PTMChannelCtrl__C3TM_ChannelCtrl_PTMChannelCtrl3(TEDROOMSignal signal);
 	static TEDROOMSignal C3TM_ChannelCtrl_PTMChannelCtrl3__C5BKGTCExec_PTMChannelCtrl(TEDROOMSignal signal);
+	static TEDROOMSignal C5BKGTCExec_PTMChannelCtrl__C3TM_ChannelCtrl_PTMChannelCtrl3(TEDROOMSignal signal);
  
 //Signal Conversion
  
-	static TEDROOMSignal C2EPDManager_PBKGExecCtrl__C5BKGTCExec_PBKGExecCtrl(TEDROOMSignal signal);
-	static TEDROOMSignal C5BKGTCExec_PBKGExecCtrl__C2EPDManager_PBKGExecCtrl(TEDROOMSignal signal);
+	static TEDROOMSignal C2EPDManager_PBKGTCExecCtrl__C5BKGTCExec_PBKGTCExecCtrl(TEDROOMSignal signal);
+	static TEDROOMSignal C5BKGTCExec_PBKGTCExecCtrl__C2EPDManager_PBKGTCExecCtrl(TEDROOMSignal signal);
  
 //Signal Conversion
  
