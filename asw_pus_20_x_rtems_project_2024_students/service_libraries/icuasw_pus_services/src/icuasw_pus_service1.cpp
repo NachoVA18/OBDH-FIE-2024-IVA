@@ -120,7 +120,20 @@ void PUSService1::TryTCAcceptation(CDTCHandler &tcHandler) {
 				acceptationStatus = TCAcceptationSubTypeError;
 			}
 			break;
-
+		case (20):
+			switch (subtype) {
+			case (1):
+				//TC Classified as HK_FDIRTC
+				tcHandler.SetExecCtrlAsBGKTC();
+				break;
+			case (3):
+				//TC Classified as HK_FDIRTC
+				tcHandler.SetExecCtrlAsBGKTC();
+				break;
+			default:
+				acceptationStatus = TCAcceptationSubTypeError;
+			}
+			break;
 		default:
 			//TC is not accepted
 			acceptationStatus = TCAcceptationTypeError;

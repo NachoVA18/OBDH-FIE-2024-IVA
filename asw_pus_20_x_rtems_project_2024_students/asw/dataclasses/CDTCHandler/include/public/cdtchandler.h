@@ -7,7 +7,7 @@
 #include "public/tmtc_dyn_mem.h"
 
 enum TTCExecCtrl {
-	ExecCtrlPrioTC, ExecCtrlReboot,ExecCtrlHK_FDIRTC, ExecCtrBKGTC
+	ExecCtrlPrioTC, ExecCtrlReboot,ExecCtrlHK_FDIRTC, ExecCtrBGKTC
 };
 
 enum TTCAcceptationStatus {
@@ -115,7 +115,7 @@ protected:
 
 	void SetExecCtrlAsBGKTC() {
 
-		mTCExecCtrl = ExecCtrlBGKTC;
+		mTCExecCtrl = ExecCtrBGKTC;
 	}
 
 
@@ -177,7 +177,7 @@ public:
 	}
 
 	bool_t IsBGKTC() {
-			return ExecCtrlBKGTC == mTCExecCtrl;
+			return ExecCtrBGKTC == mTCExecCtrl;
 	}
 
 
