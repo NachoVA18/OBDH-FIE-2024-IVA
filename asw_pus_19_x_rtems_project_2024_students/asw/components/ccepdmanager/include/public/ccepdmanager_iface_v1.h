@@ -298,7 +298,7 @@ public:
 			HandleTC_FwdHK_FDIRTC,
 			HandleTC_FwdToBKGTCExec,
 			HandleTC_ExecPrioTC,
-			Transicion3,
+			NewEvAction,
 			EDROOMMemoryTrans };
 
 
