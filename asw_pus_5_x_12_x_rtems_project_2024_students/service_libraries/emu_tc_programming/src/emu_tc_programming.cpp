@@ -13,13 +13,10 @@
 //#define FT_SOLO_EPD_ICU_SERV_9_0020
 //#define FT_SOLO_EPD_ICU_SERV_1_REJECTED_TC_0030
 
-//TODO
 //#define FT_SOLO_EPD_ICU_SERV_3_DISABLE_SID0_0040
 //#define FT_SOLO_EPD_ICU_SERV_3_UPDATE_INTERVAL_TC_0050
-
 //#define FT_SOLO_EPD_ICU_SERV_20_UPDATE_PARAM_VALUE_0060
-
-#define FT_SOLO_EPD_ICU_Monitoring_0070
+//#define FT_SOLO_EPD_ICU_Monitoring_0070
 #define FT_SOLO_EPD_ICU_Serv5_0080
 
 
@@ -125,11 +122,37 @@ EmuGSS_TCProgram20_3 prog_FT_0070_step_4(FT_0070_TIME_step4,
 #endif
 
 #ifdef FT_SOLO_EPD_ICU_Serv5_0080
-//Se dispone de la siguientes clases, además de las del servicio 12 y 20 que necesitarás utilizar
 
-EmuGSS_TCProgram5_6
+#define FT_0080_TIME_step0 (UNITIME_AFTER_POWER_ON + 5)
+#define FT_0080_TIME_step1 (UNITIME_AFTER_POWER_ON + 7)
+#define FT_0080_TIME_step2 (UNITIME_AFTER_POWER_ON + 20)
+#define FT_0080_TIME_step3 (UNITIME_AFTER_POWER_ON + 25)
+#define FT_0080_TIME_step4 (UNITIME_AFTER_POWER_ON + 35)
+#define FT_0080_TIME_step5 (UNITIME_AFTER_POWER_ON + 45)
+#define FT_0080_TIME_step6 (UNITIME_AFTER_POWER_ON + 50)
 
-EmuGSS_TCProgram5_5
+EmuGSS_TCProgram12_5 prog_FT_0080_step_0(FT_0080_TIME_step0,
+ "FT_SOLO_EPD_ICU_Serv5_0080 step 0, Config PMODID 0 for monitoring PID 1",
+ 0, 1, 1, 1, 0x4000, 10, 0x4001);
 
+EmuGSS_TCProgram12_1 prog_FT_0080_step_1(FT_0080_TIME_step1,
+ "FT_SOLO_EPD_ICU_Serv5_0080 step 1, Enable Monitoring PMODID 0", 0);
+
+EmuGSS_TCProgram5_5 prog_FT_0080_step_2(FT_0080_TIME_step2,
+ "FT_SOLO_EPD_ICU_Serv5_0080 step 2, Enable Event Report RID 0x4001",
+ 0x4001);
+
+EmuGSS_TCProgram20_3 prog_FT_0080_step_3(FT_0080_TIME_step3,
+ "FT_SOLO_EPD_ICU_Serv5_0080 step 3, Update PID 1 to 99", 1, 99);
+
+EmuGSS_TCProgram20_3 prog_FT_0080_step_4(FT_0080_TIME_step4,
+ "FT_SOLO_EPD_ICU_Serv5_0080 step 4, Update PID 1 to 5", 1, 5);
+
+EmuGSS_TCProgram5_6 prog_FT_0080_step_5(FT_0080_TIME_step5,
+"FT_SOLO_EPD_ICU_Serv5_0080 step 5, Disable Event Report RID 0x4001",
+0x4001);
+
+EmuGSS_TCProgram20_3 prog_FT_0080_step_6(FT_0080_TIME_step6,
+ "FT_SOLO_EPD_ICU_Serv5_0080 step 6, Update PID 1 to 0", 1, 0);
 
 #endif
