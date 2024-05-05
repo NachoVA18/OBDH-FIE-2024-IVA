@@ -1,6 +1,6 @@
-service_libraries/icuasw_pus_services/src/icuasw_pus_service19.o \
-  service_libraries/icuasw_pus_services/src/icuasw_pus_service19.o:  \
- ../service_libraries/icuasw_pus_services/src/icuasw_pus_service19.cpp \
+service_libraries/icuasw_pus_services/src/icuasw_pus_service2.o \
+  service_libraries/icuasw_pus_services/src/icuasw_pus_service2.o:  \
+ ../service_libraries/icuasw_pus_services/src/icuasw_pus_service2.cpp \
   /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/icuasw_pus_services/include/public/icuasw_pus_services_iface_v1.h \
   /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/asw/dataclasses/CDTMList/include/public/cdtmlist_iface_v1.h \
   /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/asw/dataclasses/CDTMList/include/public/cdtmlist.h \
@@ -33,14 +33,7 @@ service_libraries/icuasw_pus_services/src/icuasw_pus_service19.o \
   /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroombp/include/public/edroombp.h \
   /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroombp/include/edroombp_swr/rtemsapi_4_6/rtems_4_6/edroombp.h \
   /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroombp/include/edroombp_swr/edroomtypes.h \
-  /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/icuasw_pus_services/include/icuasw_pus_services/icuasw_pus_service20.h \
-  /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/asw/components/ccepdmanager/include/public/ccepdmanager_iface_v1.h \
-  /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroomsl/include/public/edroomsl_iface_v1.h \
-  /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroomsl/include/edroomsl/edroomsl.h \
-  /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroomsl_types/include/public/edroomsl_types.h \
-  /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroomsl_types/include/edroomsl_types/edroomsl_types.h \
-  /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/asw/dataclasses/CDEvAction/include/public/cdevaction_iface_v1.h \
-  /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/llsw/sc_channel_drv/include/public/sc_channel_drv_v1.h
+  /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/icuasw_pus_services/include/icuasw_pus_services/icuasw_pus_service20.h
 
 /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/icuasw_pus_services/include/public/icuasw_pus_services_iface_v1.h:
 
@@ -107,17 +100,3 @@ service_libraries/icuasw_pus_services/src/icuasw_pus_service19.o \
 /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroombp/include/edroombp_swr/edroomtypes.h:
 
 /home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/icuasw_pus_services/include/icuasw_pus_services/icuasw_pus_service20.h:
-
-/home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/asw/components/ccepdmanager/include/public/ccepdmanager_iface_v1.h:
-
-/home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroomsl/include/public/edroomsl_iface_v1.h:
-
-/home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroomsl/include/edroomsl/edroomsl.h:
-
-/home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroomsl_types/include/public/edroomsl_types.h:
-
-/home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/service_libraries/edroomsl/edroomsl_types/include/edroomsl_types/edroomsl_types.h:
-
-/home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/asw/dataclasses/CDEvAction/include/public/cdevaction_iface_v1.h:
-
-/home/atcsol/git/OBDH-FIE-2024-IVA/asw_pus_19_x_rtems_project_2024_students/llsw/sc_channel_drv/include/public/sc_channel_drv_v1.h:
