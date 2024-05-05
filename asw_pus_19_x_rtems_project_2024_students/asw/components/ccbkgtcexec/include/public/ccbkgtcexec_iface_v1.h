@@ -1,5 +1,5 @@
-#ifndef CCHK_FDIRMNG_H_
-#define CCHK_FDIRMNG_H_
+#ifndef CCBKGTCEXEC_H_
+#define CCBKGTCEXEC_H_
 
 //******************************************************************************
 // EDROOM Service Library
@@ -13,6 +13,7 @@
 
 #include <public/cdtchandler_iface_v1.h>
 #include <public/cdtmlist_iface_v1.h>
+#include <public/cdeventlist_iface_v1.h>
 
 
 //******************************************************************************
@@ -22,26 +23,26 @@
 
 
 /**
- * \class   CCHK_FDIRMng
+ * \class   CCBKGTCExec
  *
  */
-class CCHK_FDIRMng: public CEDROOMComponent {
+class CCBKGTCExec: public CEDROOMComponent {
 
 public:
 
 	/**
-	 * \enum TEDROOMCCHK_FDIRMngSignal
+	 * \enum TEDROOMCCBKGTCExecSignal
 	 * \brief Component Signal Enum Type
 	 *
 	 */
-	 enum TEDROOMCCHK_FDIRMngSignal { EDROOMSignalTimeout, 
+	 enum TEDROOMCCBKGTCExecSignal { EDROOMSignalTimeout, 
 							EDROOMSignalDestroy, 
-							SHK_FDIR_TC, 
+							SBKGTC, 
 							STxTM, 
 							STMQueued };
 
 	/**
-	 * \class CCHK_FDIRMng::CEDROOMMemory
+	 * \class CCBKGTCExec::CEDROOMMemory
 	 * \brief Component Memory
 	 *
 	 */
@@ -52,25 +53,11 @@ public:
 			//!Array of Message Queue Heads, one for each priority
 			CEDROOMQueue::CQueueHead QueueHeads[EDROOMprioMINIMUM+1];
 
-			//************ Component Timing Service Memory************
-
-			//!Component Timing Service Timer Info Memory
-			CEDROOMTimerInfo TimerInf[3];
-			//!Component Timing Service Timer Info Marks Memory
-			bool TimerInfMarks[3];
-			//!Component Timing Service TimeOut Messages Memory
-			CEDROOMTimeOutMessage TimeOutMsgs[3];
-			//!Component Timing Service TimeOut Messages Marks Memory
-			bool TimeOutMsgsMarks[3];
-
-		public: 
-
-			//!Component Timing Service Memory Object
-			CEDROOMTimingMemory TimingMemory;
-
 	// ********************************************************************
 	// ******************* Component Message Data Pools *******************
 	// ********************************************************************
+
+		public:
 
 			//! CDTMList Data Pool Memory
 			CDTMList	poolCDTMList[10+1];
@@ -101,22 +88,10 @@ public:
 	//******************  Component Communication Ports *******************
 	// ********************************************************************
 
-	//! HK_FDIRCtrl Component Port
-	CEDROOMInterface	HK_FDIRCtrl;
+	//! BKGExecCtrl Component Port
+	CEDROOMInterface	BKGExecCtrl;
 	//! TMChannelCtrl Component Port
 	CEDROOMInterface	TMChannelCtrl;
-
-
-	// ********************************************************************
-	// ********************  Timing Service Interface *********************
-	// ********************************************************************
-
-	//! Timing Service Access Point. It is common to all timing ports.
-	CEDROOMTimingSAP	 EDROOMtimingSAP;
-
-
-	//! HK_FDIRTimer Timing Port
-	CEDROOMTimingInterface	HK_FDIRTimer;
 
 
 
@@ -128,7 +103,7 @@ public:
 
 
 	//! Constructor
-	CCHK_FDIRMng(TEDROOMComponentID id, TEDROOMUInt32 roomNumMaxMens, TEDROOMPriority roomtaskPrio, 
+	CCBKGTCExec(TEDROOMComponentID id, TEDROOMUInt32 roomNumMaxMens, TEDROOMPriority roomtaskPrio, 
 		TEDROOMStackSizeType roomStack, CEDROOMMemory * pActorMemory );
 
 
@@ -179,21 +154,21 @@ public:
 	protected:
 
 	/**
-	 * \enum TEDROOMCCHK_FDIRMngSignal
+	 * \enum TEDROOMCCBKGTCExecSignal
 	 * \brief Component Signal Enum Type
 	 *
 	 */
-	enum TEDROOMCCHK_FDIRMngSignal { EDROOMSignalTimeout,
+	enum TEDROOMCCBKGTCExecSignal { EDROOMSignalTimeout,
 		EDROOMSignalDestroy,
-		SHK_FDIR_TC,
+		SBKGTC,
 		STxTM,
 		STMQueued };
 
 
-		friend class CCHK_FDIRMng;
+		friend class CCBKGTCExec;
 
 		//!component reference
-		CCHK_FDIRMng &EDROOMcomponent;
+		CCBKGTCExec &EDROOMcomponent;
 
 		//!Current message pointer reference
 		CEDROOMMessage * &Msg;
@@ -202,9 +177,8 @@ public:
 		CEDROOMMessage * &MsgBack;
 
 		//!Component ports
-		CEDROOMInterface & HK_FDIRCtrl;
+		CEDROOMInterface & BKGExecCtrl;
 		CEDROOMInterface & TMChannelCtrl;
-		CEDROOMTimingInterface & HK_FDIRTimer;
 
 
 		//! State Identifiers
@@ -214,16 +188,13 @@ public:
 		//!Transition Identifiers
 		enum TEDROOMTransitionID{Init,
 			ExecTC,
-			DoHK_FDIR,
-			DoHK_FDIR_PendingEvAction,
-			DoHK_FDIR_NoEvAction,
 			EDROOMMemoryTrans };
 
 
 
 		//!Variables
+		CDEventList &VCurrentEvList;
 		CDTMList &VCurrentTMList;
-		Pr_Time &VNextTimeout;
 
 
 		// Pools *************************************************
@@ -237,9 +208,9 @@ public:
 
 
 		//!Constructor
-		EDROOM_CTX_Top_0 (CCHK_FDIRMng &act,
+		EDROOM_CTX_Top_0 (CCBKGTCExec &act,
+				CDEventList & EDROOMpVarVCurrentEvList,
 				CDTMList & EDROOMpVarVCurrentTMList,
-				Pr_Time & EDROOMpVarVNextTimeout,
 				CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList );
 
 		//!Copy constructor
@@ -273,32 +244,12 @@ public:
 		/**
 		 * \brief  
 		 */
-		void	FDoHK_FDIR();
+		void	FExecBKGTC();
 
 		/**
 		 * \brief  
 		 */
-		void	FExecHK_FDIR_TC();
-
-		/**
-		 * \brief  
-		 */
-		void	FInitHK_FDIR();
-
-		/**
-		 * \brief  
-		 */
-		void	FInvokeTxTMList();
-
-		/**
-		 * \brief 
-		 */
-		bool	GPendingEvAction();
-
-		/**
-		 * \brief 
-		 */
-		void	FTriggerEvAction();
+		void	FTxTMList();
 
 	};
 
@@ -323,8 +274,8 @@ public:
 		EDROOM_CTX_Top_0::TEDROOMStateID edroomNextState;
 
 		//!Variables
+		CDEventList VCurrentEvList;
 		CDTMList VCurrentTMList;
-		Pr_Time VNextTimeout;
 
 
 		// Pools**************************************************
@@ -334,7 +285,7 @@ public:
 	public:
 
 		//! Constructor
-		EDROOM_SUB_Top_0 (CCHK_FDIRMng &act, CEDROOMMemory *pEDROOMMemory  );
+		EDROOM_SUB_Top_0 (CCBKGTCExec &act, CEDROOMMemory *pEDROOMMemory  );
 
 
 		//! Top Context Behaviour 
