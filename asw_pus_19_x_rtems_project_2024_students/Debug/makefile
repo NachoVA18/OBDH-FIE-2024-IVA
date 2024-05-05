@@ -26,6 +26,11 @@ RM := rm -rf
 -include asw/dataclasses/CDTMHandler/src/subdir.mk
 -include asw/dataclasses/CDTCHandler/src/subdir.mk
 -include asw/dataclasses/CDEventList/src/subdir.mk
+-include asw/components/icuasw/src/subdir.mk
+-include asw/components/cctm_channelctrl/src/subdir.mk
+-include asw/components/cchk_fdirmng/src/subdir.mk
+-include asw/components/ccepdmanager/src/subdir.mk
+-include asw/components/ccbkgtcexec/src/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -58,7 +63,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := asw_pus_19_x_rtems_project_2024_students
+BUILD_ARTIFACT_NAME := asw_pus_19_x_rtems_project_2024_resuelto
 BUILD_ARTIFACT_EXTENSION :=
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -69,19 +74,19 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 all: main-build
 
 # Main-build Target
-main-build: asw_pus_19_x_rtems_project_2024_students
+main-build: asw_pus_19_x_rtems_project_2024_resuelto
 
 # Tool invocations
-asw_pus_19_x_rtems_project_2024_students: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+asw_pus_19_x_rtems_project_2024_resuelto: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	sparc-rtems-g++ -msoft-float -o "asw_pus_19_x_rtems_project_2024_students" $(OBJS) $(USER_OBJS) $(LIBS)
+	sparc-rtems-g++ -msoft-float -o "asw_pus_19_x_rtems_project_2024_resuelto" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) asw_pus_19_x_rtems_project_2024_students
+	-$(RM) asw_pus_19_x_rtems_project_2024_resuelto
 	-@echo ' '
 
 .PHONY: all clean dependents main-build
