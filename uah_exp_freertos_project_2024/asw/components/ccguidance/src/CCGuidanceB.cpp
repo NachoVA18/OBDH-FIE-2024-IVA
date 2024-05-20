@@ -11,8 +11,8 @@
 	// CONSTRUCTORS***********************************************
 
 CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(CCGuidance &act,
+	   & EDROOMpVarVCurrentTMList,
 	 Pr_Time & EDROOMpVarVNextTimeout,
-	  & EDROOMpVarVCurrentTMList,
 	 CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList ):
 
 	EDROOMcomponent(act),
@@ -21,8 +21,8 @@ CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(CCGuidance &act,
 	TMChannelCtrl(EDROOMcomponent.TMChannelCtrl),
 	GuidanceCtrl(EDROOMcomponent.GuidanceCtrl),
 	GuidanceTimer(EDROOMcomponent.GuidanceTimer),
-	VNextTimeout(EDROOMpVarVNextTimeout),
 	VCurrentTMList(EDROOMpVarVCurrentTMList),
+	VNextTimeout(EDROOMpVarVNextTimeout),
 	EDROOMPoolCDTMList(EDROOMpPoolCDTMList)
 {
 }
@@ -35,8 +35,8 @@ CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(EDROOM_CTX_Top_0 &context):
 	TMChannelCtrl(context.TMChannelCtrl),
 	GuidanceCtrl(context.GuidanceCtrl),
 	GuidanceTimer(context.GuidanceTimer),
-	VNextTimeout(context.VNextTimeout),
 	VCurrentTMList(context.VCurrentTMList),
+	VNextTimeout(context.VNextTimeout),
 	EDROOMPoolCDTMList(context.EDROOMPoolCDTMList )
 {
 
@@ -68,21 +68,6 @@ bool CCGuidance::EDROOM_CTX_Top_0::EDROOMSearchContextTrans(
 
 	// User-defined Functions   ****************************
 
-void	CCGuidance::EDROOM_CTX_Top_0::FInitGuidance()
-
-{
-   //Define absolute time
-  Pr_Time time;
- 
-	time.GetTime(); // Get current monotonic time
-	time +=Pr_Time(0,100000) // Add 0 sec + 1e5 microsec
-	VNextTimeout=time; 
-   //Program absolute timer 
-   GuidanceTimer.InformAt( time ); 
-}
-
-
-
 void	CCGuidance::EDROOM_CTX_Top_0::FDoGuidance()
 
 {
@@ -106,6 +91,21 @@ void	CCGuidance::EDROOM_CTX_Top_0::FExecGuidanceTc()
   CDTCHandler & varSGuidanceTC = *(CDTCHandler *)Msg->data;
 	PUSService129::ExecTC(varSGuidanceTC, VCurrentTMList)
 
+}
+
+
+
+void	CCGuidance::EDROOM_CTX_Top_0::FInitGuidance()
+
+{
+   //Define absolute time
+  Pr_Time time;
+ 
+	time.GetTime(); // Get current monotonic time
+	time +=Pr_Time(0,100000) // Add 0 sec + 1e5 microsec
+	VNextTimeout=time; 
+   //Program absolute timer 
+   GuidanceTimer.InformAt( time ); 
 }
 
 
@@ -155,8 +155,8 @@ CDTMList *	CCGuidance::EDROOM_CTX_Top_0::CEDROOMPOOLCDTMList::AllocData()
 CCGuidance::EDROOM_SUB_Top_0::EDROOM_SUB_Top_0 (CCGuidance&act
 	,CEDROOMMemory *pEDROOMMemory):
 		EDROOM_CTX_Top_0(act,
-			VNextTimeout,
 			VCurrentTMList,
+			VNextTimeout,
 			EDROOMPoolCDTMList),
 		EDROOMPoolCDTMList(
 			10, pEDROOMMemory->poolCDTMList,

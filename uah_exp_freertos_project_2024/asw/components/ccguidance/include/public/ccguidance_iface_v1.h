@@ -220,8 +220,8 @@ public:
 
 
 		//!Variables
+		  &VCurrentTMList;
 		Pr_Time &VNextTimeout;
-		 &VCurrentTMList;
 
 
 		// Pools *************************************************
@@ -236,8 +236,8 @@ public:
 
 		//!Constructor
 		EDROOM_CTX_Top_0 (CCGuidance &act,
+				  & EDROOMpVarVCurrentTMList,
 				Pr_Time & EDROOMpVarVNextTimeout,
-				 & EDROOMpVarVCurrentTMList,
 				CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList );
 
 		//!Copy constructor
@@ -271,17 +271,17 @@ public:
 		/**
 		 * \brief Creates an absolut timer of 100ms for Guidance
 		 */
-		void	FInitGuidance();
-
-		/**
-		 * \brief Creates an absolut timer of 100ms for Guidance
-		 */
 		void	FDoGuidance();
 
 		/**
 		 * \brief Ejecuta el TC para el servicio 129
 		 */
 		void	FExecGuidanceTc();
+
+		/**
+		 * \brief Creates an absolut timer of 100ms for Guidance
+		 */
+		void	FInitGuidance();
 
 		void	FInvokeTxTMList();
 
@@ -308,8 +308,8 @@ public:
 		EDROOM_CTX_Top_0::TEDROOMStateID edroomNextState;
 
 		//!Variables
+		  VCurrentTMList;
 		Pr_Time VNextTimeout;
-		 VCurrentTMList;
 
 
 		// Pools**************************************************
