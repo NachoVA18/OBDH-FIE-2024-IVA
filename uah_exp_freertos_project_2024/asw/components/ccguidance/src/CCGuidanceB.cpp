@@ -89,7 +89,7 @@ void	CCGuidance::EDROOM_CTX_Top_0::FExecGuidanceTc()
 {
    //Handle Msg->data
   CDTCHandler & varSGuidanceTC = *(CDTCHandler *)Msg->data;
-	PUSService129::ExecTC(varSGuidanceTC, VCurrentTMList)
+	PUSService129::ExecTC(varSGuidanceTC, VCurrentTMList);
 
 }
 
@@ -102,7 +102,7 @@ void	CCGuidance::EDROOM_CTX_Top_0::FInitGuidance()
   Pr_Time time;
  
 	time.GetTime(); // Get current monotonic time
-	time +=Pr_Time(0,100000) // Add 0 sec + 1e5 microsec
+	time +=Pr_Time(0,100000); // Add 0 sec + 1e5 microsec
 	VNextTimeout=time; 
    //Program absolute timer 
    GuidanceTimer.InformAt( time ); 
