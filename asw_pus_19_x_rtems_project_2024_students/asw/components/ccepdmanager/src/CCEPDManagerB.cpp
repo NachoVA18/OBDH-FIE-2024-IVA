@@ -134,6 +134,11 @@ PUSService1::TryTCAcceptation(VCurrentTC);
 
 
 
+
+
+
+
+
 void	CCEPDManager::EDROOM_CTX_Top_0::FInit()
 
 {
@@ -233,10 +238,9 @@ void	CCEPDManager::EDROOM_CTX_Top_0::FGetEvAction()
 
 {
    //Handle Msg->data
-  CDEvAction & varEDROOMIRQsignal = *(CDEvAction *)Msg->data;
+	CDEvAction & varEDROOMIRQSignal = *(CDEvAction *) Msg->data;
 	
-PUSService19::GetEvActionTCHandler(varEDROOMIRQSignal, VCurrentTC); 
-
+	PUSService19::GetEvActionTCHandler(varEDROOMIRQSignal, VCurrentTC);
 }
 
 
