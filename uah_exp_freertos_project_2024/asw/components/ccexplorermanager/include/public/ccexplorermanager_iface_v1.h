@@ -39,6 +39,7 @@ public:
 	 */
 	 enum TEDROOMCCExplorerManagerSignal { EDROOMSignalTimeout, 
 							EDROOMSignalDestroy, 
+							SGuidanceTC, 
 							EDROOMIRQsignal, 
 							SBKGTC, 
 							SHK_FDIR_TC, 
@@ -96,6 +97,8 @@ public:
 	//******************  Component Communication Ports *******************
 	// ********************************************************************
 
+	//! GuidanceCtrl Component Port
+	CEDROOMInterface	GuidanceCtrl;
 	//! BKGExecCtrl Component Port
 	CEDROOMInterface	BKGExecCtrl;
 	//! HK_FDIRCtrl Component Port
@@ -256,6 +259,7 @@ public:
 	 */
 	enum TEDROOMCCExplorerManagerSignal { EDROOMSignalTimeout,
 		EDROOMSignalDestroy,
+		SGuidanceTC,
 		EDROOMIRQsignal,
 		SBKGTC,
 		SHK_FDIR_TC,
@@ -275,6 +279,7 @@ public:
 		CEDROOMMessage * &MsgBack;
 
 		//!Component ports
+		CEDROOMInterface & GuidanceCtrl;
 		CEDROOMInterface & BKGExecCtrl;
 		CEDROOMInterface & HK_FDIRCtrl;
 		CEDROOMInterface & TMChannelCtrl;
