@@ -11,7 +11,7 @@
 	// CONSTRUCTORS***********************************************
 
 CCGuidance::EDROOM_CTX_Top_0::EDROOM_CTX_Top_0(CCGuidance &act,
-	   & EDROOMpVarVCurrentTMList,
+	 CDTMList & EDROOMpVarVCurrentTMList,
 	 Pr_Time & EDROOMpVarVNextTimeout,
 	 CEDROOMPOOLCDTMList & EDROOMpPoolCDTMList ):
 
