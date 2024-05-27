@@ -40,8 +40,8 @@ void PUSService129::ExecTC(CDTCHandler &tcHandler, CDTMList &tmList) {
 }
 
 void PUSService129::Exec129_1TC(CDTCHandler &tcHandler, CDTMList &tmList) {
-	float nCVx = tcHandler.GetNextFloat;
-	float nCVy = tcHandler.GetNextFloat;
+	float nCVx = tcHandler.GetNextFloat();
+	float nCVy = tcHandler.GetNextFloat();
 
 	if(nCVx >= -1.0f && nCVx <= 1.0f && nCVy >= -1.0f && nCVy <= 1.0f){
 		sCVx = nCVx;
@@ -58,14 +58,14 @@ void PUSService129::Exec129_1TC(CDTCHandler &tcHandler, CDTMList &tmList) {
 }
 
 void PUSService129::Exec129_2TC(CDTCHandler &tcHandler, CDTMList &tmList) {
-	float nKPx = tcHandler.GetNextFloat;
-	float nKPy = tcHandler.GetNextFloat;
+	float nKPx = tcHandler.GetNextFloat();
+	float nKPy = tcHandler.GetNextFloat();
 
 
 
-	if(nKPx >= 0f && nKPx <= 0.5f && nKPy >= 0f && nKPy <= 0.5f){
-		sKpx = tcHandler.GetNextFloat;
-		sKpy = tcHandler.GetNextFloat;
+	if (nKPx >= 0.0f && nKPx <= 0.5f && nKPy >= 0.0f && nKPy <= 0.5f) {
+		sKpx = nKPx;
+		sKpy = nKPy;
 		PUSService1::BuildTM_1_7(tcHandler, tmList);
 	}else{
 		if (nKPx < -1.0f || nKPx > 1.0f) {
