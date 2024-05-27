@@ -89,7 +89,8 @@ void	CCGuidance::EDROOM_CTX_Top_0::FExecGuidanceTc()
 {
    //Handle Msg->data
   CDTCHandler & varSGuidanceTC = *(CDTCHandler *)Msg->data;
-	PUSService129::ExecTC(varSGuidanceTC, VCurrentTMList);
+CDEventList TCExecEventList; 
+PUS_GuidanceTCExecutor::ExecTC(varSGuidanceTC, VCurrentTMList,TCExecEventList);
 
 }
 

@@ -90,6 +90,21 @@ void	CCExplorerManager::EDROOM_CTX_Top_0::FExecPrioTC()
 
 
 
+void	CCExplorerManager::EDROOM_CTX_Top_0::FFwdGuidanceTC()
+
+{
+   //Allocate data from pool
+  CDTCHandler * pSGuidanceTC_Data = EDROOMPoolCDTCHandler.AllocData();
+	
+		// Complete Data 
+	
+	*pSGuidanceTC_Data=VCurrentTC;
+   //Send message 
+   GuidanceCtrl.send(SGuidanceTC,pSGuidanceTC_Data,&EDROOMPoolCDTCHandler); 
+}
+
+
+
 void	CCExplorerManager::EDROOM_CTX_Top_0::FFwdHK_FDIRTC()
 
 {
@@ -237,6 +252,16 @@ bool	CCExplorerManager::EDROOM_CTX_Top_0::GFwdToBKGTCExec()
 
 
 
+bool	CCExplorerManager::EDROOM_CTX_Top_0::GFwdToGuidanceTC()
+
+{
+
+ return VCurrentTC.IsGuidance();
+
+}
+
+
+
 bool	CCExplorerManager::EDROOM_CTX_Top_0::GFwdToHK_FDIR()
 
 {
@@ -253,31 +278,6 @@ bool	CCExplorerManager::EDROOM_CTX_Top_0::GToReboot()
 
 return VCurrentTC.IsRebootTC();
 
-}
-
-
-
-bool	CCExplorerManager::EDROOM_CTX_Top_0::GFwdToGuidanceTC()
-
-{
-
-return (129 == VCurrentTC.GetType());
-
-}
-
-
-
-void	CCExplorerManager::EDROOM_CTX_Top_0::FFwdGuidanceTC()
-
-{
-   //Allocate data from pool
-  CDTCHandler * pSGuidanceTC_Data = EDROOMPoolCDTCHandler.AllocData();
-	
-		// Complete Data 
-	
-	*pSGuidanceTC_Data=VCurrentTC;
-   //Send message 
-   GuidanceCtrl.send(SGuidanceTC,pSGuidanceTC_Data,&EDROOMPoolCDTCHandler); 
 }
 
 

@@ -375,6 +375,11 @@ public:
 		/**
 		 * \brief  
 		 */
+		void	FFwdGuidanceTC();
+
+		/**
+		 * \brief  
+		 */
 		void	FFwdHK_FDIRTC();
 
 		/**
@@ -430,22 +435,17 @@ public:
 		/**
 		 * \brief  
 		 */
+		bool	GFwdToGuidanceTC();
+
+		/**
+		 * \brief  
+		 */
 		bool	GFwdToHK_FDIR();
 
 		/**
 		 * \brief  
 		 */
 		bool	GToReboot();
-
-		/**
-		 * \brief 
-		 */
-		bool	GFwdToGuidanceTC();
-
-		/**
-		 * \brief 
-		 */
-		void	FFwdGuidanceTC();
 
 	};
 
